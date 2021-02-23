@@ -1,18 +1,4 @@
-<!--
-=========================================================
-* Argon Dashboard - v1.2.0
-=========================================================
-* Product Page: https://www.creative-tim.com/product/argon-dashboard
 
-
-* Copyright  Creative Tim (http://www.creative-tim.com)
-* Coded by www.creative-tim.com
-
-
-
-=========================================================
-* The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
--->
 <!DOCTYPE html>
 <html>
 
@@ -21,7 +7,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <meta name="description" content="Start your development with a Dashboard for Bootstrap 4.">
   <meta name="author" content="Creative Tim">
-  <title>xxx</title>
+  <title>Dashboard</title>
   <!-- Favicon -->
   <link rel="icon" href="assets/img/brand/favicon.png" type="image/png">
   <!-- Fonts -->
@@ -38,7 +24,7 @@
 
 <body>
   <!-- Sidenav -->
-  <nav class="sidenav navbar navbar-vertical  fixed-left  navbar-expand-xs navbar-light bg-white" id="sidenav-main">
+  <nav class="shadow-lg sidenav navbar navbar-vertical  fixed-left  navbar-expand-xs navbar-light bg-white" id="sidenav-main">
     <div class="scrollbar-inner">
       <!-- Brand -->
       <div class="sidenav-header  align-items-center">
@@ -52,16 +38,16 @@
           <!-- Nav items -->
           <ul class="navbar-nav">
             <li class="nav-item">
-              <a class="nav-link active" href="examples/dashboard.html">
+              <a class="nav-link active" href="index.html">
                 <i class="ni ni-tv-2 text-primary"></i>
                 <span class="nav-link-text">Dashboard</span>
               </a>
             </li>
             
             <li class="nav-item">
-              <a class="nav-link" href="examples/map.html">
+              <a class="nav-link" href="map.html">
                 <i class="ni ni-pin-3 text-primary"></i>
-                <span class="nav-link-text">Google</span>
+                <span class="nav-link-text">Map</span>
               </a>
             </li>
            
@@ -69,23 +55,16 @@
           <!-- Divider -->
           <hr class="my-3">
           <!-- Heading -->
-          <h6 class="navbar-heading p-0 text-muted">
-            <span class="docs-normal">Documentation</span>
-          </h6>
+          
           <!-- Navigation -->
           <ul class="navbar-nav mb-md-3">
            
-            <li class="nav-item">
-              <a class="nav-link" href="https://demos.creative-tim.com/argon-dashboard/docs/foundation/colors.html" target="_blank">
-                <i class="ni ni-palette"></i>
-                <span class="nav-link-text">Foundation</span>
-              </a>
-            </li>
+           
             
             <li class="nav-item">
               <a class="nav-link active active-pro" href="examples/upgrade.html">
                 <i class="ni ni-send text-dark"></i>
-                <span class="nav-link-text">Upgrade to PRO</span>
+                <span class="nav-link-text">Team Id: 2213</span>
               </a>
             </li>
           </ul>
@@ -106,7 +85,7 @@
           <!-- Card stats -->
           <div class="row pt-5">
             <div class="col-xl-3 col-md-6">
-              <div class="card card-stats">
+              <div class="card card-stats shadow-lg">
                 <!-- Card body -->
                 <div class="card-body">
                   <div class="row">
@@ -128,7 +107,7 @@
               </div>
             </div>
             <div class="col-xl-3 col-md-6">
-              <div class="card card-stats">
+              <div class="card card-stats shadow-lg">
                 <!-- Card body -->
                 <div class="card-body">
                   <div class="row">
@@ -150,7 +129,7 @@
               </div>
             </div>
             <div class="col-xl-3 col-md-6">
-              <div class="card card-stats">
+              <div class="card card-stats shadow-lg">
                 <!-- Card body -->
                 <div class="card-body">
                   <div class="row">
@@ -172,7 +151,7 @@
               </div>
             </div>
             <div class="col-xl-3 col-md-6">
-              <div class="card card-stats">
+              <div class="card card-stats shadow-lg">
                 <!-- Card body -->
                 <div class="card-body">
                   <div class="row">
@@ -205,7 +184,7 @@
         <div class="shadow-lg" id="column_chart" style="width: 100%; height: 400px;"></div>  
       </div>
       <div class="col-xl-4">
-        <div class="card shadow-lg" style="width: 100%; background-color: 1px solid black;">
+        <div class="card shadow" style="width: 100%; background-color: 1px solid black;">
           
           <div class="card-body">
             <h2 class="card-title mb-0">Recent Order</h2>
@@ -289,7 +268,7 @@
     var od=0;
     var tt=0;
 var dataarr=[];
-    $.getJSON('https://spreadsheets.google.com/feeds/list/1btrOR0CGyKkHIL9vyCgq5rdPiXcIROVMNkcjyhPybDo/5/public/full?alt=json', function(data) {
+    $.getJSON('https://spreadsheets.google.com/feeds/list/1btrOR0CGyKkHIL9vyCgq5rdPiXcIROVMNkcjyhPybDo/5/public/full?alt=json', function(data) {var count1=0;
       for (var i = 0; i < data.feed.entry.length; ++i) {
         var json_data = {
           "OderID" : data.feed.entry[i].gsx$orderid.$t,
@@ -309,8 +288,9 @@ var dataarr=[];
           arr.push(data.feed.entry[i].gsx$timetaken.$t);
           dataarr.push(arr);
           
-
+if(data.feed.entry[i].gsx$timetaken.$t!=""){count1+=1;
 tt+=parseFloat(data.feed.entry[i].gsx$timetaken.$t.substring(5,7));
+}
           
           if(data.feed.entry[i].gsx$ordershipped.$t=="YES"){
 sc+=1;
@@ -328,7 +308,7 @@ sc+=1;
       var li={a:data.feed.entry[data.feed.entry.length-1].gsx$item.$t}
       var lop={a:data.feed.entry[data.feed.entry.length-1].gsx$priority.$t}
       var loi={a:data.feed.entry[data.feed.entry.length-1].gsx$orderid.$t}
-      var at={a:(tt/data.feed.entry.length).toFixed(2)}
+      var at={a:(tt/count1).toFixed(2)}
       var shippedo={a:sc}
       var ordersd={a:data.feed.entry.length}
       var ordersdisp={a:od}
